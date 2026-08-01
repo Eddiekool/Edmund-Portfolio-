@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Brand palette — swap these to rebrand the whole app */
+  --color-brand-50: #eefdf5;
+  --color-brand-100: #d6f8e4;
+  --color-brand-400: #34c98f;
+  --color-brand-500: #16a673;
+  --color-brand-600: #0f8a5f;
+  --color-brand-700: #0c6e4d;
+
+  --color-ink-900: #0b1220;
+  --color-ink-700: #1f2937;
+  --color-ink-500: #4b5563;
+  --color-ink-300: #9ca3af;
+  --color-ink-100: #e5e7eb;
+  --color-ink-50: #f8fafc;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink-900);
+}
