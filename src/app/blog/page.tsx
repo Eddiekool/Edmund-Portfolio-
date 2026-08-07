@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import PageHero from '@/components/PageHero'
 import { getAllBlogPosts } from '@/lib/mdx'
-import { format } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 import { Clock, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
@@ -59,7 +59,7 @@ export default function BlogPage() {
                   <div className="flex items-center gap-4 text-white/40 text-sm">
                     <span>By {featured.author}</span>
                     <span>·</span>
-                    <span>{format(new Date(featured.date), 'MMMM d, yyyy')}</span>
+                    <span>{format(parseISO(featured.date), 'MMMM d, yyyy')}</span>
                     <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" />{featured.readTime}</span>
                   </div>
                   <span className="inline-flex items-center gap-2 text-brand-accent font-semibold text-sm group-hover:gap-3 transition-all">
@@ -82,7 +82,7 @@ export default function BlogPage() {
                 <h3 className="font-bold text-white text-lg mb-2 flex-1 group-hover:text-gradient transition-all">{post.title}</h3>
                 <p className="text-white/50 text-sm leading-relaxed mb-5 line-clamp-2">{post.excerpt}</p>
                 <div className="flex items-center justify-between text-white/35 text-xs mt-auto">
-                  <span>{format(new Date(post.date), 'MMM d, yyyy')}</span>
+                  <span>{format(parseISO(post.date), 'MMM d, yyyy')}</span>
                   <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{post.readTime}</span>
                 </div>
               </Link>

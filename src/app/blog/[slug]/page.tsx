@@ -4,7 +4,7 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { getBlogPost, getAllBlogSlugs } from '@/lib/mdx'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import { format } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 import { Clock, ArrowLeft, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import remarkGfm from 'remark-gfm'
@@ -62,7 +62,7 @@ export default function BlogPostPage({ params }: Props) {
                 </div>
               </div>
               <span>·</span>
-              <span>{format(new Date(post.date), 'MMMM d, yyyy')}</span>
+              <span>{format(parseISO(post.date), 'MMMM d, yyyy')}</span>
               <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" />{post.readTime}</span>
             </div>
           </div>
@@ -87,8 +87,10 @@ export default function BlogPostPage({ params }: Props) {
               source={post.content}
               options={{
                 mdxOptions: {
-                  remarkPlugins: [remarkGfm],
-                  rehypePlugins: [rehypeHighlight, rehypeSlug],
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  remarkPlugins: [[remarkGfm] as any],
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  rehypePlugins: [[rehypeHighlight], [rehypeSlug]] as any,
                 },
               }}
             />
